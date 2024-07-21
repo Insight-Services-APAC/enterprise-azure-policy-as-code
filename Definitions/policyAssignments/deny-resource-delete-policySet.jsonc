@@ -1,0 +1,102 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policySetName": "Deny-Resource-Delete",
+    "displayName": "Deny Azure Resource Deletion for specific Azure Resources",
+    "nonComplianceMessages": [
+      {
+        "policyDefinitionReferenceId": "automationAccounts",
+        "message": "This policy denies the deletion of key Azure Landing Zone Platform Services."
+      },
+      {
+        "policyDefinitionReferenceId": "azureBastion",
+        "message": "This policy denies the deletion of key Azure Landing Zone Platform Services."
+      },
+      {
+        "policyDefinitionReferenceId": "azureFirewall",
+        "message": "This policy denies the deletion of key Azure Landing Zone Platform Services."
+      },
+      {
+        "policyDefinitionReferenceId": "connections",
+        "message": "This policy denies the deletion of key Azure Landing Zone Platform Services."
+      },
+      {
+        "policyDefinitionReferenceId": "eventhubNamespace",
+        "message": "This policy denies the deletion of key Azure Landing Zone Platform Services."
+      },
+      {
+        "policyDefinitionReferenceId": "expressRouteCircuit",
+        "message": "This policy denies the deletion of key Azure Landing Zone Platform Services."
+      },
+      {
+        "policyDefinitionReferenceId": "expressRouteGateway",
+        "message": "This policy denies the deletion of key Azure Landing Zone Platform Services."
+      },
+      {
+        "policyDefinitionReferenceId": "keyVault",
+        "message": "This policy denies the deletion of key Azure Landing Zone Platform Services."
+      },
+      {
+        "policyDefinitionReferenceId": "loadBalancer",
+        "message": "This policy denies the deletion of key Azure Landing Zone Platform Services."
+      },
+      {
+        "policyDefinitionReferenceId": "localNetworkGateway",
+        "message": "This policy denies the deletion of key Azure Landing Zone Platform Services."
+      },
+      {
+        "policyDefinitionReferenceId": "networkSecurityGroup",
+        "message": "This policy denies the deletion of key Azure Landing Zone Platform Services."
+      },
+      {
+        "policyDefinitionReferenceId": "networkWatchers",
+        "message": "This policy denies the deletion of key Azure Landing Zone Platform Services."
+      },
+      {
+        "policyDefinitionReferenceId": "publicIpAddresses",
+        "message": "This policy denies the deletion of key Azure Landing Zone Platform Services."
+      },
+      {
+        "policyDefinitionReferenceId": "recoveryServicesVault",
+        "message": "This policy denies the deletion of key Azure Landing Zone Platform Services."
+      },
+      {
+        "policyDefinitionReferenceId": "routeTables",
+        "message": "This policy denies the deletion of key Azure Landing Zone Platform Services."
+      },
+      {
+        "policyDefinitionReferenceId": "storageAccounts",
+        "message": "This policy denies the deletion of key Azure Landing Zone Platform Services."
+      },
+      {
+        "policyDefinitionReferenceId": "userAssignedIdentity",
+        "message": "This policy denies the deletion of key Azure Landing Zone Platform Services."
+      },
+      {
+        "policyDefinitionReferenceId": "virtualNetworkGateway",
+        "message": "This policy denies the deletion of key Azure Landing Zone Platform Services."
+      },
+      {
+        "policyDefinitionReferenceId": "virtualNetworks",
+        "message": "This policy denies the deletion of key Azure Landing Zone Platform Services."
+      }
+    ]
+  },
+  "assignment": {
+    "name": "Deny-Resource-Delete",
+    "displayName": "Deny Azure Resource Deletion for specific Azure Resources",
+    "description": "Deny Resource Deletion for identified Azure Resources."
+  },
+  "metadata": {
+    "assignedBy": "GitHub",
+    "_deployed_by_insight": "true"
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1-platform"
+    ]
+  }
+}

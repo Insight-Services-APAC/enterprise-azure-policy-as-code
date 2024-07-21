@@ -1,0 +1,56 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policySetId": "/providers/Microsoft.Authorization/policySetDefinitions/2b00397d-c309-49c4-aa5a-f0b2c5bc6321",
+    "displayName": "Enable Azure Monitor for Hybrid VMs with AMA"
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "children": [
+    {
+      "nodeName": "/child-0",
+      "assignment": {
+        "name": "Deploy-vmHybr-Monitoring",
+        "displayName": "Enable Azure Monitor for Hybrid Virtual Machines",
+        "description": "Enable Azure Monitor for Hybrid Virtual Machines in the specified scope (Management group, Subscription or resource group)."
+      },
+      "metadata": {
+        "assignedBy": "GitHub"
+      },
+      "parameters": {
+        "dcrResourceId": "/subscriptions/a50d2a27-93d9-43b1-957c-2a663ffaf37f/resourceGroups/arg-syd-plat-mgmt-logging/providers/Microsoft.Insights/dataCollectionRules/dcr-syd-plat-mgmt-vminsights",
+        "enableProcessesAndDependencies": true,
+        "effect": "DeployIfNotExists"
+      },
+      "scope": {
+        "alz": [
+          "/providers/Microsoft.Management/managementGroups/mg-alz1-landingzones",
+          "/providers/Microsoft.Management/managementGroups/mg-alz1-platform"
+        ]
+      }
+    },
+    {
+      "nodeName": "/child-1",
+      "assignment": {
+        "name": "Deploy-VM-AMA-Arc",
+        "displayName": "Enable the Azure Monitor Agent for Azure Arc VMs",
+        "description": "Enable the Azure Monitor Agent for Azure Arc virtual machines (VMs) in the specified scope (management group, subscription or resource group)."
+      },
+      "metadata": {
+        "assignedBy": "GitHub",
+        "_deployed_by_insight": "true"
+      },
+      "parameters": {
+        "dcrResourceId": "",
+        "enableProcessesAndDependencies": true,
+        "effect": "DeployIfNotExists"
+      },
+      "scope": {
+        "alz": [
+          "/providers/Microsoft.Management/managementGroups/mg-alz1"
+        ]
+      }
+    }
+  ]
+}

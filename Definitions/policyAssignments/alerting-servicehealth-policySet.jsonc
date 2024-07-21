@@ -1,0 +1,41 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policySetName": "Alerting-ServiceHealth",
+    "displayName": "Deploy Azure Monitor Baseline Alerts for Service Health"
+  },
+  "assignment": {
+    "name": "Deploy-AMBA-SH",
+    "displayName": "Deploy Azure Monitor Baseline Alerts for Service Health",
+    "description": "Initiative to deploy AMBA Service Health alerts to Azure services"
+  },
+  "metadata": {
+    "assignedBy": "GitHub",
+    "_deployed_by_amba": "true"
+  },
+  "parameters": {
+    "ALZMonitorResourceGroupLocation": "australiaeast",
+    "SvcHlthAdvisoryAlertState": "true",
+    "SvcHlthMaintenanceAlertState": "true",
+    "serviceHealthAdvisoryPolicyEffect": "deployIfNotExists",
+    "ALZMonitorResourceGroupTags": {
+      "Project": "amba-monitoring"
+    },
+    "serviceHealthSecurityPolicyEffect": "deployIfNotExists",
+    "svcHlthSecAdvisoryAlertState": "true",
+    "ResHlthUnhealthyPolicyEffect": "deployIfNotExists",
+    "serviceHealthIncidentPolicyEffect": "deployIfNotExists",
+    "SvcHlthIncidentAlertState": "true",
+    "serviceHealthMaintenancePolicyEffect": "deployIfNotExists",
+    "ALZMonitorResourceGroupName": "alertsRG",
+    "ResHlthUnhealthyAlertState": "true"
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1"
+    ]
+  }
+}

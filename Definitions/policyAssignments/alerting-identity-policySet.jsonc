@@ -1,0 +1,55 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policySetName": "Alerting-Identity",
+    "displayName": "Deploy Azure Monitor Baseline Alerts for Identity"
+  },
+  "assignment": {
+    "name": "Deploy-AMBA-Identity",
+    "displayName": "Deploy Azure Monitor Baseline Alerts for Identity",
+    "description": "Initiative to deploy AMBA alerts relevant to the ALZ Identity management group"
+  },
+  "metadata": {
+    "assignedBy": "GitHub",
+    "_deployed_by_amba": "true"
+  },
+  "parameters": {
+    "KVRequestAlertState": "true",
+    "KVRequestEvaluationFrequency": "PT5M",
+    "ALZMonitorResourceGroupName": "alertsRG",
+    "KvLatencyAvailabilityAlertSeverity": "3",
+    "ALZMonitorResourceGroupLocation": "australiaeast",
+    "KvLatencyAvailabilityAlertState": "true",
+    "activityKVDeleteAlertState": "true",
+    "KVCapacityAlertSeverity": "1",
+    "KVAvailabilityThreshold": "20",
+    "KvLatencyAvailabilityPolicyEffect": "disabled",
+    "KvLatencyAvailabilityEvaluationFrequency": "PT5M",
+    "KvAvailabilityAlertSeverity": "1",
+    "KVRequestWindowSize": "PT5M",
+    "KVCapacityPolicyEffect": "disabled",
+    "KVCapacityEvaluationFrequency": "PT1M",
+    "KVCapacityThreshold": "75",
+    "KvAvailabilityPolicyEffect": "disabled",
+    "KvAvailabilityEvaluationFrequency": "PT1M",
+    "KVRequestPolicyEffect": "disabled",
+    "KvLatencyAvailabilityWindowSize": "PT5M",
+    "KVCapacityAlertState": "true",
+    "KvLatencyAvailabilityThreshold": "1000",
+    "KVRequestAlertSeverity": "2",
+    "KvAvailabilityWindowSize": "PT1M",
+    "KVCapacityWindowSize": "PT5M",
+    "KvAvailabilityAlertState": "true",
+    "ALZMonitorResourceGroupTags": {
+      "Project": "amba-monitoring"
+    }
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1-platform-identity"
+    ]
+  }
+}

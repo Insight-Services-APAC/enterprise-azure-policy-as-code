@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policyId": "/providers/Microsoft.Authorization/policyDefinitions/2465583e-4e78-4c15-b6be-a36cbc7c8b0f",
+    "displayName": "Configure Azure Activity logs to stream to specified Log Analytics workspace"
+  },
+  "assignment": {
+    "name": "Deploy-AzActivity-Log",
+    "displayName": "Deploy Diagnostic Settings for Activity Log to Log Analytics workspace",
+    "description": "Ensures that Activity Log Diagnostics settings are set to push logs into Log Analytics workspace."
+  },
+  "metadata": {
+    "assignedBy": "GitHub"
+  },
+  "parameters": {
+    "effect": "DeployIfNotExists",
+    "logAnalytics": "/subscriptions/a50d2a27-93d9-43b1-957c-2a663ffaf37f/resourceGroups/arg-syd-plat-mgmt-logging/providers/Microsoft.OperationalInsights/workspaces/law-syd-plat-mgmt-3gucev5z3p7a4"
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1"
+    ]
+  }
+}

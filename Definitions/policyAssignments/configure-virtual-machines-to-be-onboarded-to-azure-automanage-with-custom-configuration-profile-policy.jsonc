@@ -1,0 +1,30 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policyId": "/providers/Microsoft.Authorization/policyDefinitions/b025cfb4-3702-47c2-9110-87fe0cfcc99b",
+    "displayName": "Configure virtual machines to be onboarded to Azure Automanage with Custom Configuration Profile"
+  },
+  "assignment": {
+    "name": "Deploy-Automanage-Custom",
+    "displayName": "Deploy Azure Automanage Custom Configuration Profile",
+    "description": "Apply Automanage with a customized Configuration Profile to Azure virtual machines."
+  },
+  "metadata": {
+    "assignedBy": "GitHub",
+    "_deployed_by_insight": "true"
+  },
+  "parameters": {
+    "inclusionTagName": "",
+    "effect": "DeployIfNotExists",
+    "inclusionTagValues": [],
+    "configurationProfile": ""
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1"
+    ]
+  }
+}

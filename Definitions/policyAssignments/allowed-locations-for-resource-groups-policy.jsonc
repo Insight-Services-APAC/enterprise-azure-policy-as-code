@@ -1,0 +1,29 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policyId": "/providers/Microsoft.Authorization/policyDefinitions/e765b5de-1225-4ba3-bd56-1ac6695af988",
+    "displayName": "Allowed locations for resource groups"
+  },
+  "assignment": {
+    "name": "Deny-RSG-Locations",
+    "displayName": "Limit allowed locations for Resource Groups",
+    "description": "Specifies the allowed locations (regions) where Resource Groups can be deployed."
+  },
+  "metadata": {
+    "assignedBy": "GitHub"
+  },
+  "parameters": {
+    "listOfAllowedLocations": [
+      "uksouth",
+      "ukwest"
+    ]
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1-landingzones"
+    ]
+  }
+}

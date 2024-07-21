@@ -1,0 +1,39 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policySetName": "Notification-Assets",
+    "displayName": "Deploy Azure Monitor Baseline Alerts - Notification Assets"
+  },
+  "assignment": {
+    "name": "Deploy-AMBA-Notification",
+    "displayName": "Deploy Azure Monitor Baseline Alerts - Notification Assets",
+    "description": "Initiative to deploy AMBA Notification Assets"
+  },
+  "metadata": {
+    "assignedBy": "GitHub",
+    "_deployed_by_amba": "true"
+  },
+  "parameters": {
+    "ALZFunctionTriggerUrl": "",
+    "ALZEventHubResourceId": "",
+    "ALZMonitorResourceGroupLocation": "australiaeast",
+    "ALZMonitorResourceGroupTags": {
+      "Project": "amba-monitoring"
+    },
+    "ALZMonitorActionGroupEmail": "",
+    "ALZLogicappCallbackUrl": "",
+    "ALZLogicappResourceId": "",
+    "ALZMonitorResourceGroupName": "alertsRG",
+    "ALZArmRoleId": "",
+    "ALZFunctionResourceId": "",
+    "ALZWebhookServiceUri": ""
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1"
+    ]
+  }
+}

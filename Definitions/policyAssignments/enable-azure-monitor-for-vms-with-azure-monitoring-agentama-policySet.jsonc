@@ -1,0 +1,76 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policySetId": "/providers/Microsoft.Authorization/policySetDefinitions/924bfe3a-762f-40e7-86dd-5c8b95eb09e6",
+    "displayName": "Enable Azure Monitor for VMs with Azure Monitoring Agent(AMA)"
+  },
+  "resourceSelectors": [],
+  "children": [
+    {
+      "nodeName": "/child-0",
+      "assignment": {
+        "name": "Deploy-VM-AMA-Azure",
+        "displayName": "Enable the Azure Monitor Agent for Azure VMs",
+        "description": "Enable the Azure Monitor Agent for the virtual machines (VMs) in the specified scope (management group, subscription or resource group)."
+      },
+      "metadata": {
+        "assignedBy": "GitHub",
+        "_deployed_by_insight": "true"
+      },
+      "parameters": {
+        "effect": "DeployIfNotExists",
+        "dcrResourceId": "",
+        "scopeToSupportedImages": true,
+        "bringYourOwnUserAssignedManagedIdentity": false,
+        "enableProcessesAndDependencies": true
+      },
+      "overrides": [
+        {
+          "value": "Disabled",
+          "selectors": [
+            {
+              "kind": "policyDefinitionReferenceId",
+              "in": [
+                "AddUserAssignedManagedIdentity_VM"
+              ]
+            }
+          ],
+          "kind": "policyEffect"
+        }
+      ],
+      "scope": {
+        "alz": [
+          "/providers/Microsoft.Management/managementGroups/mg-alz1"
+        ]
+      }
+    },
+    {
+      "nodeName": "/child-1",
+      "assignment": {
+        "name": "Deploy-VM-Monitoring",
+        "displayName": "Enable Azure Monitor for VMs",
+        "description": "Enable Azure Monitor for the virtual machines (VMs) in the specified scope (management group, subscription or resource group). Takes Log Analytics workspace as parameter."
+      },
+      "metadata": {
+        "assignedBy": "GitHub"
+      },
+      "parameters": {
+        "effect": "DeployIfNotExists",
+        "bringYourOwnUserAssignedManagedIdentity": true,
+        "userAssignedIdentityResourceId": "/subscriptions/a50d2a27-93d9-43b1-957c-2a663ffaf37f/resourcegroups/arg-syd-plat-mgmt-logging/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uai-syd-plat-mgmt-ama",
+        "restrictBringYourOwnUserAssignedIdentityToSubscription": false,
+        "scopeToSupportedImages": false,
+        "dcrResourceId": "/subscriptions/a50d2a27-93d9-43b1-957c-2a663ffaf37f/resourceGroups/arg-syd-plat-mgmt-logging/providers/Microsoft.Insights/dataCollectionRules/dcr-syd-plat-mgmt-vminsights",
+        "enableProcessesAndDependencies": true
+      },
+      "overrides": [],
+      "scope": {
+        "alz": [
+          "/providers/Microsoft.Management/managementGroups/mg-alz1-platform",
+          "/providers/Microsoft.Management/managementGroups/mg-alz1-landingzones"
+        ]
+      }
+    }
+  ]
+}

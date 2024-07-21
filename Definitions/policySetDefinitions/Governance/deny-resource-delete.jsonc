@@ -1,0 +1,113 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-set-definition-schema.json",
+  "name": "Deny-Resource-Delete",
+  "properties": {
+    "displayName": "Deny Azure Resource Deletion for specific Azure Resources",
+    "description": "This policy initiative denies resource deletion for identified Azure Resources.",
+    "metadata": {
+      "category": "Governance",
+      "version": "1.0.0",
+      "source": "https://github.com/Insight-Services-APAC/azure-landing-zones-bicep/",
+      "_deployed_by_insight": "true"
+    },
+    "parameters": {},
+    "policyDefinitions": [
+      {
+        "policyDefinitionReferenceId": "automationAccounts",
+        "policyDefinitionName": "Deny-Delete-Automation-Accounts",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "azureBastion",
+        "policyDefinitionName": "Deny-Delete-Azure-Bastion",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "azureFirewall",
+        "policyDefinitionName": "Deny-Delete-Azure-Firewall",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "connections",
+        "policyDefinitionName": "Deny-Delete-Connections",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "eventhubNamespace",
+        "policyDefinitionName": "Deny-Delete-EventHub-Namespace",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "expressRouteCircuit",
+        "policyDefinitionName": "Deny-Delete-ExpressRoute-Circuits",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "expressRouteGateway",
+        "policyDefinitionName": "Deny-Delete-ExpressRoute-Gateways",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "keyVault",
+        "policyDefinitionName": "Deny-Delete-Key-Vaults",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "loadBalancer",
+        "policyDefinitionName": "Deny-Delete-Load-Balancers",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "localNetworkGateway",
+        "policyDefinitionName": "Deny-Delete-Local-Network-Gateways",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "networkSecurityGroup",
+        "policyDefinitionName": "Deny-Delete-Network-Security-Groups",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "networkWatchers",
+        "policyDefinitionName": "Deny-Delete-Network-Watchers",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "publicIpAddresses",
+        "policyDefinitionName": "Deny-Delete-Public-IP-Addresses",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "recoveryServicesVault",
+        "policyDefinitionName": "Deny-Delete-Recovery-Services-Vaults",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "routeTables",
+        "policyDefinitionName": "Deny-Delete-Route-Tables",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "storageAccounts",
+        "policyDefinitionName": "Deny-Delete-Storage-Accounts",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "userAssignedIdentity",
+        "policyDefinitionName": "Deny-Delete-User-Assigned-Identity",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "virtualNetworkGateway",
+        "policyDefinitionName": "Deny-Delete-Virtual-Network-Gateways",
+        "parameters": {}
+      },
+      {
+        "policyDefinitionReferenceId": "virtualNetworks",
+        "policyDefinitionName": "Deny-Delete-Virtual-Networks",
+        "parameters": {}
+      }
+    ],
+    "policyDefinitionGroups": []
+  }
+}

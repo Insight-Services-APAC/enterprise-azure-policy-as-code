@@ -1,0 +1,35 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policySetName": "Deploy-Azure-Update-Manager",
+    "displayName": "Deploy Azure Update Manager Baseline"
+  },
+  "assignment": {
+    "name": "Deploy-Update-Manager",
+    "displayName": "Configure periodic checking of System updates",
+    "description": "This initiative assignment configures periodic checking of Azure and Azure Arc Virtual Machines."
+  },
+  "metadata": {
+    "assignedBy": "GitHub",
+    "_deployed_by_insight": "true"
+  },
+  "parameters": {
+    "tagOperator": "Any",
+    "tagValues": {
+      "updateManager": "Enabled"
+    },
+    "assessmentMode": "AutomaticByPlatform",
+    "osType": "Windows",
+    "locations": [
+      "australiaEast"
+    ]
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1"
+    ]
+  }
+}

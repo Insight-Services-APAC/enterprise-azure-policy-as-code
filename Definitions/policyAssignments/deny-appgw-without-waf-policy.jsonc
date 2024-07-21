@@ -1,0 +1,32 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policyName": "Deny-AppGW-Without-WAF",
+    "displayName": "Application Gateway should be deployed with WAF enabled",
+    "nonComplianceMessages": [
+      {
+        "policyDefinitionReferenceId": "",
+        "message": "Please assign a Web Application Policy to the App Gateway Deployment."
+      }
+    ]
+  },
+  "assignment": {
+    "name": "Deny-AppGW-Without-WAF",
+    "displayName": "Deny Application Gateways without Web Application Firewall Enabled",
+    "description": "Deny the creation of Application Gateways without Web Application Firewall enabled."
+  },
+  "metadata": {
+    "assignedBy": "GitHub"
+  },
+  "parameters": {
+    "effect": "Deny"
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1"
+    ]
+  }
+}

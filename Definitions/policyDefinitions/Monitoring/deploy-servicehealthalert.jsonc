@@ -1,0 +1,343 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-definition-schema.json",
+  "name": "Deploy-ServiceHealthAlert",
+  "properties": {
+    "displayName": "Deploy Service Health Alert for Subscription",
+    "description": "Deploy Service Health Alert for a given region, incident type and list of impacted services.",
+    "mode": "All",
+    "metadata": {
+      "category": "Monitoring",
+      "version": "1.0.0",
+      "source": "https://github.com/Insight-Services-APAC/azure-landing-zones-bicep/",
+      "_deployed_by_insight": true
+    },
+    "parameters": {
+      "effect": {
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "defaultValue": "DeployIfNotExists",
+        "metadata": {
+          "description": "Enable or disable the execution of the Policy.",
+          "displayName": "Effects"
+        },
+        "type": "String"
+      },
+      "actionGroupId": {
+        "metadata": {
+          "description": "Id for the Action group.",
+          "displayName": "Action Group",
+          "strongType": "microsoft.insights/actiongroups"
+        },
+        "type": "string"
+      },
+      "serviceHealthAlertName": {
+        "metadata": {
+          "description": "Name for the Activity log alert.",
+          "displayName": "Alert Name"
+        },
+        "type": "string"
+      },
+      "impactedServices": {
+        "defaultValue": [
+          "Automation",
+          "Azure Active Directory",
+          "Azure DNS",
+          "Azure Monitor",
+          "Azure Policy",
+          "Azure Resource Manager",
+          "Backup",
+          "Diagnostic Logs",
+          "ExpressRoute",
+          "ExpressRoute \\ ExpressRoute Circuits",
+          "ExpressRoute \\ ExpressRoute Gateways",
+          "Load Balancer",
+          "Log Analytics",
+          "Microsoft Azure portal",
+          "Microsoft Azure portal \\ Marketplace",
+          "Multi-Factor Authentication",
+          "Network Infrastructure",
+          "Network Watcher",
+          "Security Center",
+          "Storage",
+          "Virtual Machine Scale Sets",
+          "Virtual Machines",
+          "Virtual Network",
+          "VPN Gateway",
+          "Application Gateway",
+          "Azure Database for PostgreSQL",
+          "Azure Database for MySQL",
+          "Azure Bot Service",
+          "Azure Databricks",
+          "Azure Data Lake Storage Gen1",
+          "Azure Data Lake Storage Gen2",
+          "Azure DevOps",
+          "Azure DDoS Protection",
+          "Azure DevOps \\ Pipelines",
+          "Azure DevOps \\ Artifacts",
+          "Azure DevOps \\ Repos",
+          "Azure Firewall",
+          "Azure Kubernetes Service (AKS)",
+          "Azure Reservations",
+          "Cloud Services",
+          "Container Registry",
+          "Data Factory V2",
+          "Event Hubs",
+          "Key Vault",
+          "Redis Cache",
+          "VPN Gateway \\ Virtual WAN"
+        ],
+        "metadata": {
+          "description": "List of impacted service names",
+          "displayName": "Impacted Services"
+        },
+        "type": "array"
+      },
+      "impactedRegions": {
+        "defaultValue": [
+          "Global",
+          "Australia East"
+        ],
+        "metadata": {
+          "description": "List of impacted regions",
+          "displayName": "Impacted Regions"
+        },
+        "type": "array"
+      },
+      "serviceHealthAlertRGLocation": {
+        "defaultValue": "australiaEast",
+        "metadata": {
+          "description": "This is the location of the Resource Group where to store the alert.",
+          "displayName": "Alert Resource Group Location",
+          "strongType": "location"
+        },
+        "type": "string"
+      },
+      "serviceHealthAlertRG": {
+        "metadata": {
+          "description": "This is the name of the Resource Group that will contain the Service Health alert resource.",
+          "displayName": "Alert Resource Group Name"
+        },
+        "type": "string"
+      }
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.resources/subscriptions"
+          }
+        ]
+      },
+      "then": {
+        "effect": "[parameters('effect')]",
+        "details": {
+          "type": "Microsoft.Insights/activityLogAlerts",
+          "existenceCondition": {
+            "allOf": [
+              {
+                "field": "Microsoft.Insights/ActivityLogAlerts/enabled",
+                "equals": "true"
+              },
+              {
+                "equals": 3,
+                "count": {
+                  "field": "Microsoft.Insights/ActivityLogAlerts/condition.allOf[*]",
+                  "where": {
+                    "anyOf": [
+                      {
+                        "allOf": [
+                          {
+                            "field": "Microsoft.Insights/ActivityLogAlerts/condition.allOf[*].field",
+                            "equals": "category"
+                          },
+                          {
+                            "field": "Microsoft.Insights/ActivityLogAlerts/condition.allOf[*].equals",
+                            "equals": "ServiceHealth"
+                          }
+                        ]
+                      },
+                      {
+                        "allOf": [
+                          {
+                            "field": "Microsoft.Insights/ActivityLogAlerts/condition.allOf[*].field",
+                            "equals": "properties.impactedServices[*].ServiceName"
+                          },
+                          {
+                            "field": "Microsoft.Insights/ActivityLogAlerts/condition.allOf[*].containsAny",
+                            "exists": true
+                          }
+                        ]
+                      },
+                      {
+                        "allOf": [
+                          {
+                            "field": "Microsoft.Insights/ActivityLogAlerts/condition.allOf[*].field",
+                            "equals": "properties.impactedServices[*].ImpactedRegions[*].RegionName"
+                          },
+                          {
+                            "field": "Microsoft.Insights/ActivityLogAlerts/condition.allOf[*].containsAny",
+                            "exists": true
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          "roleDefinitionIds": [
+            "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+          ],
+          "deployment": {
+            "subscriptionId": "[subscription().id]",
+            "properties": {
+              "parameters": {
+                "actionGroupId": {
+                  "value": "[parameters('actionGroupId')]"
+                },
+                "serviceHealthAlertName": {
+                  "value": "[parameters('serviceHealthAlertName')]"
+                },
+                "impactedServices": {
+                  "value": "[parameters('impactedServices')]"
+                },
+                "impactedRegions": {
+                  "value": "[parameters('impactedRegions')]"
+                },
+                "serviceHealthAlertRGLocation": {
+                  "value": "[parameters('serviceHealthAlertRGLocation')]"
+                },
+                "serviceHealthAlertRG": {
+                  "value": "[parameters('serviceHealthAlertRG')]"
+                }
+              },
+              "mode": "incremental",
+              "template": {
+                "parameters": {
+                  "actionGroupId": {
+                    "type": "string"
+                  },
+                  "serviceHealthAlertName": {
+                    "type": "string"
+                  },
+                  "impactedServices": {
+                    "type": "array"
+                  },
+                  "impactedRegions": {
+                    "type": "array"
+                  },
+                  "serviceHealthAlertRGLocation": {
+                    "type": "string"
+                  },
+                  "serviceHealthAlertRG": {
+                    "type": "string"
+                  }
+                },
+                "contentVersion": "1.0.0.0",
+                "resources": [
+                  {
+                    "type": "Microsoft.Resources/resourceGroups",
+                    "properties": {},
+                    "location": "[parameters('serviceHealthAlertRGLocation')]",
+                    "apiVersion": "2020-06-01",
+                    "name": "[parameters('serviceHealthAlertRG')]"
+                  },
+                  {
+                    "resourceGroup": "[parameters('serviceHealthAlertRG')]",
+                    "type": "Microsoft.Resources/deployments",
+                    "properties": {
+                      "parameters": {
+                        "actionGroupId": {
+                          "value": "[parameters('actionGroupId')]"
+                        },
+                        "serviceHealthAlertName": {
+                          "value": "[parameters('serviceHealthAlertName')]"
+                        },
+                        "impactedServices": {
+                          "value": "[parameters('impactedServices')]"
+                        },
+                        "impactedRegions": {
+                          "value": "[parameters('impactedRegions')]"
+                        }
+                      },
+                      "mode": "Incremental",
+                      "template": {
+                        "parameters": {
+                          "actionGroupId": {
+                            "type": "string"
+                          },
+                          "serviceHealthAlertName": {
+                            "type": "string"
+                          },
+                          "impactedServices": {
+                            "type": "array"
+                          },
+                          "impactedRegions": {
+                            "type": "array"
+                          }
+                        },
+                        "contentVersion": "1.0.0.0",
+                        "resources": [
+                          {
+                            "type": "Microsoft.Insights/activityLogAlerts",
+                            "properties": {
+                              "description": "Service Health alerts for all incident types and specific services/regions",
+                              "enabled": true,
+                              "scopes": [
+                                "[subscription().id]"
+                              ],
+                              "condition": {
+                                "allOf": [
+                                  {
+                                    "field": "category",
+                                    "equals": "ServiceHealth"
+                                  },
+                                  {
+                                    "field": "properties.impactedServices[*].ServiceName",
+                                    "containsAny": "[parameters('impactedServices')]"
+                                  },
+                                  {
+                                    "field": "properties.impactedServices[*].ImpactedRegions[*].RegionName",
+                                    "containsAny": "[parameters('impactedRegions')]"
+                                  }
+                                ]
+                              },
+                              "actions": {
+                                "actionGroups": [
+                                  {
+                                    "actionGroupId": "[parameters('actionGroupId')]"
+                                  }
+                                ]
+                              }
+                            },
+                            "location": "Global",
+                            "apiVersion": "2017-04-01",
+                            "name": "[parameters('serviceHealthAlertName')]"
+                          }
+                        ],
+                        "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#"
+                      }
+                    },
+                    "apiVersion": "2020-06-01",
+                    "name": "nestedDeployment",
+                    "dependsOn": [
+                      "[resourceId('Microsoft.Resources/resourceGroups', parameters('serviceHealthAlertRG'))]"
+                    ]
+                  }
+                ],
+                "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#"
+              }
+            },
+            "location": "westeurope"
+          },
+          "existenceScope": "Subscription",
+          "deploymentScope": "Subscription"
+        }
+      }
+    }
+  }
+}

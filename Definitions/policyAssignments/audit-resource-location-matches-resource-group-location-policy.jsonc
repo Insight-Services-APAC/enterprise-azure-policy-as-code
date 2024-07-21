@@ -1,0 +1,23 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policyId": "/providers/Microsoft.Authorization/policyDefinitions/0a914e76-4921-4c19-b460-a2d36003525a",
+    "displayName": "Audit resource location matches resource group location"
+  },
+  "assignment": {
+    "name": "Audit-Location-Match",
+    "displayName": "Audit that the resource location matches its resource group location",
+    "description": "Audit resource location matches resource group location"
+  },
+  "metadata": {
+    "assignedBy": "GitHub"
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1"
+    ]
+  }
+}

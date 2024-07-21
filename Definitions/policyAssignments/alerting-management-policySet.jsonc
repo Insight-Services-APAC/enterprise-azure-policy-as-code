@@ -1,0 +1,48 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policySetName": "Alerting-Management",
+    "displayName": "Deploy Azure Monitor Baseline Alerts for Management"
+  },
+  "assignment": {
+    "name": "Deploy-AMBA-Management",
+    "displayName": "Deploy Azure Monitor Baseline Alerts for Management",
+    "description": "Initiative to deploy AMBA alerts relevant to the ALZ Management management group"
+  },
+  "metadata": {
+    "assignedBy": "GitHub",
+    "_deployed_by_amba": "true"
+  },
+  "parameters": {
+    "ALZMonitorResourceGroupLocation": "australiaeast",
+    "StorageAccountAvailabilityPolicyEffect": "deployIfNotExists",
+    "StorageAccountAvailabilityThreshold": "90",
+    "AATotalJobAlertAlertState": "true",
+    "AATotalJobAlertSeverity": "2",
+    "StorageAccountAvailabilityAlertSeverity": "1",
+    "ALZMonitorResourceGroupTags": {
+      "Project": "amba-monitoring"
+    },
+    "AATotalJobAlertThreshold": "20",
+    "StorageAccountAvailabilityWindowSize": "PT5M",
+    "AATotalJobAlertPolicyEffect": "deployIfNotExists",
+    "activityLAWKeyRegenAlertState": "true",
+    "StorageAccountAvailabilityAlertState": "true",
+    "AATotalJobAlertEvaluationFrequency": "PT1M",
+    "StorageAccountDeleteAlertState": "true",
+    "StorageAccountAvailabilityFrequency": "PT5M",
+    "AATotalJobAlertWindowSize": "PT5M",
+    "StorageAccountDeletePolicyEffect": "deployIfNotExists",
+    "RVBackupHealthMonitorPolicyEffect": "modify",
+    "ALZMonitorResourceGroupName": "alertsRG",
+    "activityLAWDeleteAlertState": "true"
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1-platform-management"
+    ]
+  }
+}

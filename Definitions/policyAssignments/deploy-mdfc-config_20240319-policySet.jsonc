@@ -1,0 +1,41 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policySetName": "Deploy-MDFC-Config_20240319",
+    "displayName": "Deploy Microsoft Defender for Cloud configuration"
+  },
+  "assignment": {
+    "name": "Deploy-MDFC-Config-H224",
+    "displayName": "Deploy Microsoft Defender for Cloud configuration",
+    "description": "Deploy Microsoft Defender for Cloud configuration and Security Contacts"
+  },
+  "metadata": {
+    "assignedBy": "GitHub"
+  },
+  "parameters": {
+    "enableAscForOssDb": "DeployIfNotExists",
+    "enableAscForCspm": "DeployIfNotExists",
+    "enableAscForArm": "DeployIfNotExists",
+    "ascExportResourceGroupLocation": "australiaeast",
+    "enableAscForAppServices": "DeployIfNotExists",
+    "enableAscForCosmosDbs": "DeployIfNotExists",
+    "enableAscForStorage": "DeployIfNotExists",
+    "enableAscForServers": "DeployIfNotExists",
+    "enableAscForSql": "DeployIfNotExists",
+    "enableAscForSqlOnVm": "DeployIfNotExists",
+    "ascExportResourceGroupName": "asc-export-alz",
+    "enableAscForServersVulnerabilityAssessments": "DeployIfNotExists",
+    "enableAscForContainers": "DeployIfNotExists",
+    "enableAscForKeyVault": "DeployIfNotExists",
+    "logAnalytics": "/subscriptions/a50d2a27-93d9-43b1-957c-2a663ffaf37f/resourceGroups/arg-syd-plat-mgmt-logging/providers/Microsoft.OperationalInsights/workspaces/law-syd-plat-mgmt-3gucev5z3p7a4",
+    "emailSecurityContact": "test@test.com"
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1"
+    ]
+  }
+}

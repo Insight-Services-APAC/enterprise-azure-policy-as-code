@@ -1,0 +1,80 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policySetName": "Deploy-Private-DNS-Zones",
+    "displayName": "Configure Azure PaaS services to use private DNS zones"
+  },
+  "assignment": {
+    "name": "Deploy-Private-DNS-Zones",
+    "displayName": "Configure Azure PaaS services to use private DNS zones",
+    "description": "This policy initiative is a group of policies that ensures private endpoints to Azure PaaS services are integrated with Azure Private DNS zones."
+  },
+  "metadata": {
+    "assignedBy": "GitHub"
+  },
+  "parameters": {
+    "azureEventGridDomainsPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.eventgrid.azure.net",
+    "effect": "DeployIfNotExists",
+    "azureStorageStaticWebSecPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.web.core.windows.net",
+    "azureSynapseSQLPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.sql.azuresynapse.net",
+    "azureBatchPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.batch.azure.com",
+    "azureWebPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.webpubsub.azure.com",
+    "azureCosmosMongoPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.mongo.cosmos.azure.com",
+    "azureMonitorPrivateDnsZoneId3": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.ods.opinsights.azure.com",
+    "azureKeyVaultPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.vaultcore.azure.net",
+    "azureRedisCachePrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.redis.cache.windows.net",
+    "azureDataFactoryPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.datafactory.azure.net",
+    "azureStorageDFSSecPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.dfs.core.windows.net",
+    "azureMediaServicesKeyPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net",
+    "azureStorageFilePrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.file.core.windows.net",
+    "azureDataFactoryPortalPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.adf.azure.com",
+    "azureStorageBlobSecPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net",
+    "azureMediaServicesLivePrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net",
+    "azureDatabricksPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.azuredatabricks.net",
+    "azureSynapseSQLODPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.sql.azuresynapse.net",
+    "azureStorageBlobPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net",
+    "azureCosmosGremlinPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.gremlin.cosmos.azure.com",
+    "azureCognitiveServicesPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.cognitiveservices.azure.com",
+    "azureIotPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices-provisioning.net",
+    "azureSignalRPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.service.signalr.net",
+    "azureStorageStaticWebPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.web.core.windows.net",
+    "azureFilePrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.afs.azure.net",
+    "azureStorageQueuePrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.queue.core.windows.net",
+    "azureHDInsightPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.azurehdinsight.net",
+    "azureAsrPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.siterecovery.windowsazure.com",
+    "azureEventGridTopicsPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.eventgrid.azure.net",
+    "azureCosmosSQLPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.documents.azure.com",
+    "azureServiceBusNamespacePrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.servicebus.windows.net",
+    "azureMediaServicesStreamPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.media.azure.net",
+    "azureMachineLearningWorkspaceSecondPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.notebooks.azure.net",
+    "azureSynapseDevPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.dev.azuresynapse.net",
+    "azureCosmosTablePrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.table.cosmos.azure.com",
+    "azureMigratePrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.prod.migration.windowsazure.com",
+    "azureAppPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.azconfig.io",
+    "effect1": "deployIfNotExists",
+    "azureStorageQueueSecPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.queue.core.windows.net",
+    "azureAcrPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.azurecr.io",
+    "azureStorageDFSPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.dfs.core.windows.net",
+    "azureEventHubNamespacePrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.servicebus.windows.net",
+    "azureMonitorPrivateDnsZoneId2": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.oms.opinsights.azure.com",
+    "azureIotHubsPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-devices.net",
+    "azureAutomationWebhookPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-automation.net",
+    "azureDiskAccessPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net",
+    "azureAppServicesPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.azurewebsites.net",
+    "azureMonitorPrivateDnsZoneId1": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.monitor.azure.com",
+    "azureCognitiveSearchPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.search.windows.net",
+    "azureMonitorPrivateDnsZoneId4": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.agentsvc.azure-automation.net",
+    "azureCosmosCassandraPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.cassandra.cosmos.azure.com",
+    "azureMachineLearningWorkspacePrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.api.azureml.ms",
+    "azureMonitorPrivateDnsZoneId5": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.blob.core.windows.net",
+    "azureAutomationDSCHybridPrivateDnsZoneId": "/subscriptions/5cb7efe0-67af-4723-ab35-0f2b42a85839/resourceGroups/arg-syd-plat-conn-privatedns/providers/Microsoft.Network/privateDnsZones/privatelink.azure-automation.net"
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1-landingzones-corp"
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policySetName": "Enforce-ACSB",
+    "displayName": "Enforce Azure Compute Security Benchmark compliance auditing"
+  },
+  "assignment": {
+    "name": "Enforce-ACSB",
+    "displayName": "Enforce Azure Compute Security Baseline compliance auditing",
+    "description": "This initiative assignment enables Azure Compute Security Baseline compliance auditing for Windows and Linux virtual machines."
+  },
+  "metadata": {
+    "assignedBy": "GitHub"
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1"
+    ]
+  }
+}

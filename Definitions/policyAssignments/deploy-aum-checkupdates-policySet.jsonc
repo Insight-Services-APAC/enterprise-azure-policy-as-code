@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policySetName": "Deploy-AUM-CheckUpdates",
+    "displayName": "Configure periodic checking for missing system updates on azure virtual machines and Arc-enabled virtual machines"
+  },
+  "assignment": {
+    "name": "Enable-AUM-CheckUpdates",
+    "displayName": "Configure periodic checking for missing system updates on azure virtual machines and Arc-enabled virtual machines.",
+    "description": "Configure auto-assessment (every 24 hours) for OS updates. You can control the scope of assignment according to machine subscription, resource group, location or tag. Learn more about this for Windows: https://aka.ms/computevm-windowspatchassessmentmode, for Linux: https://aka.ms/computevm-linuxpatchassessmentmode."
+  },
+  "metadata": {
+    "assignedBy": "GitHub"
+  },
+  "parameters": {
+    "assessmentMode": "AutomaticByPlatform"
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1-platform",
+      "/providers/Microsoft.Management/managementGroups/mg-alz1-landingzones"
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policySetId": "/providers/Microsoft.Authorization/policySetDefinitions/1f3afdf9-d0c9-4c3d-847f-89da613e70a8",
+    "displayName": "Microsoft cloud security benchmark"
+  },
+  "assignment": {
+    "name": "Deploy-ASC-Monitoring",
+    "displayName": "Enable Monitoring in Microsoft Defender for Cloud",
+    "description": "Enable Monitoring in Microsoft Defender for Cloud."
+  },
+  "metadata": {
+    "assignedBy": "GitHub"
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1"
+    ]
+  }
+}

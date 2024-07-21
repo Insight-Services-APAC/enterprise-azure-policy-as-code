@@ -1,0 +1,31 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policySetId": "/providers/Microsoft.Authorization/policySetDefinitions/27272c0b-c225-4cc3-b8b0-f2534b093077",
+    "displayName": "[Preview]: Australian Government ISM PROTECTED"
+  },
+  "assignment": {
+    "name": "Deploy-ISM-Protected",
+    "displayName": "Australian Government ISM PROTECTED",
+    "description": "This initiative includes policies that address a subset of Australian Government Information Security Manual (ISM) controls. Additional policies will be added in upcoming releases. For more information, visit https://aka.ms/auism-initiative."
+  },
+  "metadata": {
+    "assignedBy": "GitHub",
+    "_deployed_by_insight": "true"
+  },
+  "parameters": {
+    "membersToExclude": "myUser1",
+    "listOfResourceTypes": [
+      "Microsoft.Network/virtualNetworks"
+    ],
+    "logAnalyticsWorkspaceId": ""
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1-landingzones"
+    ]
+  }
+}

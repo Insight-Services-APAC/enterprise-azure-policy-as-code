@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policyName": "Deny-MgmtPorts-From-Internet",
+    "displayName": "Management port access from the Internet should be blocked"
+  },
+  "assignment": {
+    "name": "Deny-MgmtPorts-Internet",
+    "displayName": "Management port access from the Internet should be blocked",
+    "description": "This policy denies any network security rule that allows management port access from the Internet"
+  },
+  "metadata": {
+    "assignedBy": "GitHub"
+  },
+  "parameters": {
+    "effect": "Deny"
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1-platform-identity",
+      "/providers/Microsoft.Management/managementGroups/mg-alz1-landingzones"
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policySetName": "Enforce-Backup",
+    "displayName": "Enforce enhanced recovery and backup policies"
+  },
+  "assignment": {
+    "name": "Enforce-ASR",
+    "displayName": "Enforce enhanced recovery and backup policies",
+    "description": "This initiative assignment enables recommended ALZ guardrails for Azure Recovery Services."
+  },
+  "metadata": {
+    "assignedBy": "GitHub"
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1-platform",
+      "/providers/Microsoft.Management/managementGroups/mg-alz1-landingzones"
+    ]
+  }
+}

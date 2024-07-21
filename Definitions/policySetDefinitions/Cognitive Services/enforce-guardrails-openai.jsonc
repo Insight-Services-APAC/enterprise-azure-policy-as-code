@@ -1,0 +1,125 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-set-definition-schema.json",
+  "name": "Enforce-Guardrails-OpenAI",
+  "properties": {
+    "displayName": "Enforce recommended guardrails for Open AI (Cognitive Service)",
+    "description": "This policy initiative is a group of policies that ensures Open AI (Cognitive Service) is compliant per regulated Landing Zones.",
+    "metadata": {
+      "category": "Cognitive Services",
+      "version": "1.0.0",
+      "alzCloudEnvironments": "[\"AzureCloud\",\"AzureChinaCloud\",\"AzureUSGovernment\"]",
+      "source": "https://github.com/Azure/Enterprise-Scale/"
+    },
+    "parameters": {
+      "cognitiveServicesModifyDisableLocalAuth": {
+        "allowedValues": [
+          "Modify",
+          "Disabled"
+        ],
+        "defaultValue": "Modify",
+        "type": "string"
+      },
+      "cognitiveServicesOutboundNetworkAccess": {
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny",
+        "type": "string"
+      },
+      "cognitiveServicesDisableLocalAuth": {
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny",
+        "type": "string"
+      },
+      "cognitiveServicesCustomerStorage": {
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny",
+        "type": "string"
+      },
+      "cognitiveServicesManagedIdentity": {
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny",
+        "type": "string"
+      },
+      "cognitiveServicesNetworkAcls": {
+        "allowedValues": [
+          "Audit",
+          "Deny",
+          "Disabled"
+        ],
+        "defaultValue": "Deny",
+        "type": "string"
+      }
+    },
+    "policyDefinitions": [
+      {
+        "policyDefinitionReferenceId": "Deny-Cognitive-Services-Cust-Storage",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/46aa9b05-0e60-4eae-a88b-1e9d374fa515",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('cognitiveServicesCustomerStorage')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "Deny-Cognitive-Services-Local-Auth",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/71ef260a-8f18-47b7-abcb-62d0673d94dc",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('cognitiveServicesDisableLocalAuth')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "Deny-Cognitive-Services-Managed-Identity",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/fe3fd216-4f83-4fc1-8984-2bbec80a3418",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('cognitiveServicesManagedIdentity')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "Deny-OpenAi-NetworkAcls",
+        "policyDefinitionName": "Deny-CognitiveServices-NetworkAcls",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('cognitiveServicesNetworkAcls')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "Deny-OpenAi-OutboundNetworkAccess",
+        "policyDefinitionName": "Deny-CognitiveServices-RestrictOutboundNetworkAccess",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('cognitiveServicesOutboundNetworkAccess')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "Modify-Cognitive-Services-Local-Auth",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/14de9e63-1b31-492e-a5a3-c3f7fd57f555",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('cognitiveServicesModifyDisableLocalAuth')]"
+          }
+        }
+      }
+    ]
+  }
+}

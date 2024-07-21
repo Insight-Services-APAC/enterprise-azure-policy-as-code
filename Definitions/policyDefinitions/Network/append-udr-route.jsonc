@@ -1,0 +1,141 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-definition-schema.json",
+  "name": "Append-UDR-Route",
+  "properties": {
+    "displayName": "Deploy a default route to all route tables",
+    "description": "This policy deploys a default route to all route tables.",
+    "mode": "Indexed",
+    "metadata": {
+      "category": "Network",
+      "version": "1.0.0",
+      "source": "https://github.com/Insight-Services-APAC/azure-landing-zones-bicep/",
+      "_deployed_by_insight": true
+    },
+    "parameters": {
+      "effect": {
+        "allowedValues": [
+          "deny",
+          "audit",
+          "disabled",
+          "modify"
+        ],
+        "defaultValue": "modify",
+        "metadata": {
+          "description": "set the execution effect of the policy",
+          "displayName": "Effect"
+        },
+        "type": "string"
+      },
+      "addressPrefix": {
+        "metadata": {
+          "description": "The destination IP address range in CIDR notation that this Policy checks for within the UDR. Example: 0.0.0.0/0 to check for the presence of a default route.",
+          "displayName": "Address Prefix"
+        },
+        "type": "string"
+      },
+      "nextHopIpAddress": {
+        "metadata": {
+          "description": "The IP address packets should be forwarded to.",
+          "displayName": "Next Hop IP Address"
+        },
+        "type": "string"
+      },
+      "nextHopType": {
+        "allowedValues": [
+          "VnetLocal",
+          "VirtualNetworkGateway",
+          "Internet",
+          "VirtualAppliance",
+          "None"
+        ],
+        "metadata": {
+          "description": "The next hope type that the policy checks for within the inspected route. The value can be Virtual Network, Virtual Network Gateway, Internet, Virtual Appliance, or None.",
+          "displayName": "Next Hop Type"
+        },
+        "type": "string"
+      },
+      "routename": {
+        "metadata": {
+          "description": "The name of the route.",
+          "displayName": "Route Name"
+        },
+        "type": "string"
+      }
+    },
+    "policyRule": {
+      "if": {
+        "allOf": [
+          {
+            "field": "type",
+            "equals": "Microsoft.Network/routeTables"
+          },
+          {
+            "equals": 0,
+            "count": {
+              "field": "Microsoft.Network/routeTables/routes[*]",
+              "where": {
+                "allOf": [
+                  {
+                    "field": "Microsoft.Network/routeTables/routes[*].addressPrefix",
+                    "equals": "[parameters('addressPrefix')]"
+                  },
+                  {
+                    "field": "Microsoft.Network/routeTables/routes[*].nextHopType",
+                    "equals": "[parameters('nextHopType')]"
+                  },
+                  {
+                    "field": "Microsoft.Network/routeTables/routes[*].nextHopIpAddress",
+                    "equals": "[parameters('nextHopIpAddress')]"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "allOf": [
+              {
+                "equals": "0.0.0.0/0",
+                "value": "[parameters('addressPrefix')]"
+              },
+              {
+                "equals": 0,
+                "count": {
+                  "field": "Microsoft.Network/routeTables/subnets[*]",
+                  "where": {
+                    "field": "Microsoft.Network/routeTables/subnets[*].name",
+                    "in": [
+                      "GatewaySubnet"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "then": {
+        "effect": "[parameters('effect')]",
+        "details": {
+          "roleDefinitionIds": [
+            "/providers/microsoft.authorization/roleDefinitions/4d97b98b-1d4f-4787-a291-c67834d212e7"
+          ],
+          "operations": [
+            {
+              "field": "Microsoft.Network/routeTables/routes[*]",
+              "value": {
+                "properties": {
+                  "addressPrefix": "[parameters('addressPrefix')]",
+                  "nextHopIpAddress": "[parameters('nextHopIpAddress')]",
+                  "nextHopType": "[parameters('nextHopType')]"
+                },
+                "name": "[parameters('routename')]"
+              },
+              "operation": "add"
+            }
+          ],
+          "conflictEffect": "deny"
+        }
+      }
+    }
+  }
+}

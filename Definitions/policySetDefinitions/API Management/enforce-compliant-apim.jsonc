@@ -1,0 +1,205 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-set-definition-schema.json",
+  "name": "Enforce-Compliant-APIM",
+  "properties": {
+    "displayName": "Enforce compliant secure-by-default guardrails for API Management",
+    "description": "This policy initiative is a group of policies that ensures API Management is compliant.",
+    "metadata": {
+      "category": "API Management",
+      "version": "1.0.0",
+      "source": "https://github.com/Insight-Services-APAC/azure-landing-zones-bicep/",
+      "_deployed_by_insight": "true"
+    },
+    "parameters": {
+      "apimDisablePublicNetworkAccess": {
+        "defaultValue": "DeployIfNotExists",
+        "type": "string"
+      },
+      "apimApiBackendCertValidation": {
+        "defaultValue": "Deny",
+        "type": "string"
+      },
+      "apimEncryptedProtocols": {
+        "defaultValue": "Deny",
+        "type": "string"
+      },
+      "apimDirectApiEndpoint": {
+        "defaultValue": "Deny",
+        "type": "string"
+      },
+      "apiSubscriptionScope": {
+        "defaultValue": "Deny",
+        "type": "string"
+      },
+      "minimumApiVersion": {
+        "defaultValue": "Deny",
+        "type": "string"
+      },
+      "apimCallApiAuthn": {
+        "defaultValue": "Deny",
+        "type": "string"
+      },
+      "apimVnetUsage": {
+        "defaultValue": "Deny",
+        "type": "string"
+      },
+      "apimLogAnalyticsWorkspaceId": {
+        "defaultValue": "",
+        "type": "string"
+      },
+      "apimSkuVnet": {
+        "defaultValue": "Deny",
+        "type": "string"
+      },
+      "apimSecrets": {
+        "defaultValue": "Deny",
+        "type": "string"
+      },
+      "apimLogsCategory": {
+        "defaultValue": "allLogs",
+        "type": "string"
+      },
+      "apimDiagnostics": {
+        "allowedValues": [
+          "DeployIfNotExists",
+          "Disabled"
+        ],
+        "defaultValue": "Disabled",
+        "type": "string"
+      }
+    },
+    "policyDefinitions": [
+      {
+        "policyDefinitionReferenceId": "Deny-Api-subscription-scope",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/3aa03346-d8c5-4994-a5bc-7652c2a2aef1",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('apiSubscriptionScope')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "Deny-Apim-Authn",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/c15dcc82-b93c-4dcb-9332-fbf121685b54",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('apimCallApiAuthn')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "Deny-Apim-Cert-Validation",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/92bb331d-ac71-416a-8c91-02f2cb734ce4",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('apimApiBackendCertValidation')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "Deny-Apim-Direct-Endpoint",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/b741306c-968e-4b67-b916-5675e5c709f4",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('apimDirectApiEndpoint')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "Deny-Apim-Protocols",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/ee7495e7-3ba7-40b6-bfee-c29e22cc75d4",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('apimEncryptedProtocols')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "Deny-Apim-Sku-Vnet",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/73ef9241-5d81-4cd4-b483-8443d1730fe5",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('apimSkuVnet')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "Deny-Apim-Version",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/549814b6-3212-4203-bdc8-1548d342fb67",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('minimumApiVersion')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "Deny-Apim-without-Kv",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/f1cc7827-022c-473e-836e-5a51cae0b249",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('apimSecrets')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "Deny-Apim-without-Vnet",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/ef619a2c-cc4d-4d03-b2ba-8c94a834d85b",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('apimVnetUsage')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "Dine-Apim-Diagnostics",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/567c93f7-3661-494f-a30f-0a94d9bfebf8",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('apimDiagnostics')]"
+          },
+          "logAnalytics": {
+            "value": "[parameters('apimLogAnalyticsWorkspaceId')]"
+          },
+          "categoryGroup": {
+            "value": "[parameters('apimLogsCategory')]"
+          }
+        }
+      },
+      {
+        "policyDefinitionReferenceId": "Dine-Apim-Public-NetworkAccess",
+        "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/7ca8c8ac-3a6e-493d-99ba-c5fa35347ff2",
+        "parameters": {
+          "effect": {
+            "value": "[parameters('apimDisablePublicNetworkAccess')]"
+          }
+        }
+      }
+    ],
+    "policyDefinitionGroups": [
+      {
+        "displayName": "Ensure API Management is using secure encryption",
+        "description": "Policy to ensure API Management is using secure encryption",
+        "category": "Data Protection",
+        "name": "Encryption"
+      },
+      {
+        "displayName": "Ensure API Management is not accessible over the public internet",
+        "description": "Policy to ensure API Management is not accessible over the public internet",
+        "category": "Network Security",
+        "name": "Network"
+      },
+      {
+        "displayName": "Ensure usage of centralized identity and auhtorization system for API Management",
+        "description": "Policy to ensure API Management is not using local authorization",
+        "category": "Identity Management",
+        "name": "Identity"
+      },
+      {
+        "displayName": "Ensure API Management is logging all events to Log Analytics",
+        "description": "Policy to ensure API Management is logging all events to Log Analytics workspace",
+        "category": "Logging and Threat Detection",
+        "name": "Logging"
+      }
+    ]
+  }
+}

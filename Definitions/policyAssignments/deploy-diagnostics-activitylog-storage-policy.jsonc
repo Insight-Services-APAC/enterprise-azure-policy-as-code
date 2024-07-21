@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policyName": "Deploy-Diagnostics-ActivityLog-Storage",
+    "displayName": "Deploy Diagnostic Settings for Activity Log to Azure Storage"
+  },
+  "assignment": {
+    "name": "Deploy-Activity-Log-Sta",
+    "displayName": "Deploy Diagnostic Settings for Activity Log to Azure Storage",
+    "description": "Ensures that Activity Log Diagnostics settings are set to push logs into a Storage Account for Long term retention."
+  },
+  "metadata": {
+    "assignedBy": "GitHub",
+    "_deployed_by_insight": "true"
+  },
+  "parameters": {
+    "storageId": "/subscriptions/a50d2a27-93d9-43b1-957c-2a663ffaf37f/resourceGroups/arg-syd-plat-mgmt-logging/providers/Microsoft.Storage/storageAccounts/stasydplatmgmt3gucev5z3p"
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1"
+    ]
+  }
+}

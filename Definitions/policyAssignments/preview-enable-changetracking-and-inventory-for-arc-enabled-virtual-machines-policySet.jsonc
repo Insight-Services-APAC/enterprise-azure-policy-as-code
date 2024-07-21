@@ -1,0 +1,28 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policySetId": "/providers/Microsoft.Authorization/policySetDefinitions/53448c70-089b-4f52-8f38-89196d7f2de1",
+    "displayName": "[Preview]: Enable ChangeTracking and Inventory for Arc-enabled virtual machines"
+  },
+  "assignment": {
+    "name": "Deploy-vmArc-ChangeTrack",
+    "displayName": "Enable ChangeTracking and Inventory for Arc-enabled virtual machines",
+    "description": "Enable ChangeTracking and Inventory for Arc-enabled virtual machines. Takes Data Collection Rule ID as parameter and asks for an option to input applicable locations."
+  },
+  "metadata": {
+    "assignedBy": "GitHub"
+  },
+  "parameters": {
+    "effect": "DeployIfNotExists",
+    "dcrResourceId": "/subscriptions/a50d2a27-93d9-43b1-957c-2a663ffaf37f/resourceGroups/arg-syd-plat-mgmt-logging/providers/Microsoft.Insights/dataCollectionRules/dcr-syd-plat-mgmt-changetracking"
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1-platform",
+      "/providers/Microsoft.Management/managementGroups/mg-alz1-landingzones"
+    ]
+  }
+}

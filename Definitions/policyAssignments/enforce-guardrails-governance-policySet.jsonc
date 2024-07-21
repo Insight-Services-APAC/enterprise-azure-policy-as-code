@@ -1,0 +1,45 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policySetName": "Enforce-Guardrails-Governance",
+    "displayName": "Enforce recommended guardrails for Azure Governance"
+  },
+  "assignment": {
+    "name": "Enforce-Governance",
+    "displayName": "Enforce Azure Governance Guardrails",
+    "description": "Enforce Azure Governance Guardrails for Tagging, Hybrid Use Benefits and other governance constructs."
+  },
+  "metadata": {
+    "assignedBy": "GitHub",
+    "_deployed_by_insight": "true"
+  },
+  "parameters": {
+    "environmentTag": "environment",
+    "criticalityTag": "criticality",
+    "costCenterTag": "costCenter",
+    "dataClassificationTag": "dataClassification",
+    "ownerTag": "owner",
+    "applicationNameTag": "applicationName",
+    "contactEmailTag": "contactEmail"
+  },
+  "overrides": [],
+  "resourceSelectors": [
+    {
+      "selectors": [
+        {
+          "kind": "resourceType",
+          "notIn": [
+            "microsoft.insights/activityLogAlerts"
+          ]
+        }
+      ],
+      "name": "resourceSelector-ActivityLogAlerts"
+    }
+  ],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1"
+    ]
+  }
+}

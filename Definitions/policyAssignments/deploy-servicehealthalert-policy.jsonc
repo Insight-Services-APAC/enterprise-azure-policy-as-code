@@ -1,0 +1,29 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policyName": "Deploy-ServiceHealthAlert",
+    "displayName": "Deploy Service Health Alert for Subscription"
+  },
+  "assignment": {
+    "name": "Deploy-ServiceHealth",
+    "displayName": "Deploy Service Health Alert for Subscription",
+    "description": "Deploy Service Health Alert for a given region, incident type and list of impacted services."
+  },
+  "metadata": {
+    "assignedBy": "GitHub",
+    "_deployed_by_insight": "true"
+  },
+  "parameters": {
+    "serviceHealthAlertName": "landingZoneServiceHealthAlert",
+    "serviceHealthAlertRG": "alertsRG",
+    "actionGroupId": "/subscriptions/a50d2a27-93d9-43b1-957c-2a663ffaf37f/resourceGroups/alertsRG/providers/Microsoft.Insights/actiongroups/platmgmtActionGroup"
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1"
+    ]
+  }
+}

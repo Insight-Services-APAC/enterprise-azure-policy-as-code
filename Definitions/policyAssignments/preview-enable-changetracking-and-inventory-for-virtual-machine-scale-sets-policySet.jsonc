@@ -1,0 +1,31 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/enterprise-azure-policy-as-code/main/Schemas/policy-assignment-schema.json",
+  "nodeName": "/root",
+  "definitionEntry": {
+    "policySetId": "/providers/Microsoft.Authorization/policySetDefinitions/c4a70814-96be-461c-889f-2b27429120dc",
+    "displayName": "[Preview]: Enable ChangeTracking and Inventory for virtual machine scale sets"
+  },
+  "assignment": {
+    "name": "Deploy-VMSS-ChangeTrack",
+    "displayName": "Enable ChangeTracking and Inventory for virtual machine scale sets",
+    "description": "Enable ChangeTracking and Inventory for virtual machine scale sets. Takes Data Collection Rule ID as parameter and asks for an option to input applicable locations and user-assigned identity for Azure Monitor Agent."
+  },
+  "metadata": {
+    "assignedBy": "GitHub"
+  },
+  "parameters": {
+    "effect": "DeployIfNotExists",
+    "dcrResourceId": "/subscriptions/a50d2a27-93d9-43b1-957c-2a663ffaf37f/resourceGroups/arg-syd-plat-mgmt-logging/providers/Microsoft.Insights/dataCollectionRules/dcr-syd-plat-mgmt-changetracking",
+    "userAssignedIdentityResourceId": "/subscriptions/a50d2a27-93d9-43b1-957c-2a663ffaf37f/resourcegroups/arg-syd-plat-mgmt-logging/providers/Microsoft.ManagedIdentity/userAssignedIdentities/uai-syd-plat-mgmt-ama",
+    "restrictBringYourOwnUserAssignedIdentityToSubscription": false,
+    "bringYourOwnUserAssignedManagedIdentity": true
+  },
+  "overrides": [],
+  "resourceSelectors": [],
+  "scope": {
+    "alz": [
+      "/providers/Microsoft.Management/managementGroups/mg-alz1-landingzones",
+      "/providers/Microsoft.Management/managementGroups/mg-alz1-platform"
+    ]
+  }
+}
